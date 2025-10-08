@@ -1,0 +1,164 @@
+{
+  "name": "client-shell",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "hp",
+  "sourceRoot": "apps/client-shell/src",
+  "tags": [
+    "app:shell",
+    "scope:client"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {
+        "tsConfig": "apps/client-shell/tsconfig.federation.json"
+      },
+      "configurations": {
+        "production": {
+          "target": "client-shell:esbuild:production"
+        },
+        "development": {
+          "target": "client-shell:esbuild:development",
+          "dev": true
+        },
+        "docker": {
+          "target": "client-shell:esbuild:docker",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular-architects/native-federation:build",
+      "configurations": {
+        "production": {
+          "target": "client-shell:serve-original:production"
+        },
+        "development": {
+          "target": "client-shell:serve-original:development"
+        },
+        "docker": {
+          "target": "client-shell:serve-original:docker"
+        }
+      },
+      "options": {
+        "rebuildDelay": 300,
+        "dev": true
+      }
+    },
+    "esbuild": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/client-shell",
+        "index": "apps/client-shell/src/index.html",
+        "browser": "apps/client-shell/src/main.ts",
+        "polyfills": [
+          "es-module-shims"
+        ],
+        "tsConfig": "apps/client-shell/tsconfig.app.json",
+        "inlineStyleLanguage": "less",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/client-shell/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "assets/i18n",
+            "output": "assets/i18n"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          }
+        ],
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/client-shell/src/styles.less"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        },
+        "docker": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "baseHref": "/",
+          "deployUrl": "/"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-original": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "client-shell:esbuild:production"
+        },
+        "development": {
+          "buildTarget": "client-shell:esbuild:development"
+        },
+        "docker": {
+          "buildTarget": "client-shell:esbuild:docker",
+          "host": "0.0.0.0",
+          "poll": 1000
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "client-shell:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/client-shell/jest.config.ts",
+        "tsConfig": "apps/client-shell/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "client-shell:build",
+        "staticFilePath": "dist/apps/client-shell/browser",
+        "spa": true
+      }
+    }
+  }
+}

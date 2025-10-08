@@ -1,0 +1,11 @@
+<button
+  *transloco="let t; scope: 'shell'; prefix: 'shell.button'"
+  [iconStart]="`@tui.${theme() === 'dark' ? 'sun' : 'moon'}`"
+  (click)="toggleTheme(theme()!)"
+  tuiIconButton
+  appearance="flat-grayscale"
+  type="button"
+  size="s"
+>
+  {{ t('switchTheme') }}
+</button>

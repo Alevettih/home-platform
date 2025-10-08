@@ -1,0 +1,96 @@
+@if (header(); as header) {
+  <header tuiNavigationHeader>
+    @for (group of header.leftGroups(); track group.id(); let last = $last) {
+      <ng-template
+        [ngTemplateOutlet]="groupTemplate"
+        [ngTemplateOutletContext]="{ $implicit: group, last }"
+      />
+
+      @if (last) {
+        <hr />
+      }
+    }
+    @for (group of header.middleGroups(); track group.id(); let last = $last) {
+      <ng-template
+        [ngTemplateOutlet]="groupTemplate"
+        [ngTemplateOutletContext]="{ $implicit: group, last }"
+      />
+
+      @if (last) {
+        <hr />
+      }
+    }
+    @for (group of header.rightGroups(); track group.id(); let last = $last) {
+      <ng-template
+        [ngTemplateOutlet]="groupTemplate"
+        [ngTemplateOutletContext]="{ $implicit: group, last }"
+      />
+    }
+
+    <ng-template
+      #groupTemplate
+      let-group
+      let-last="last"
+    >
+      <div class="group">
+        <ng-template [ngTemplateOutlet]="group.templateRef" />
+      </div>
+
+      @if (!last) {
+        <div class="divider"></div>
+      }
+    </ng-template>
+  </header>
+}
+
+<div class="content">
+  <aside [tuiNavigationAside]="expanded()">
+    <ng-container *transloco="let t; scope: 'shell'; prefix: 'shell.button'">
+      <a
+        routerLink="/apps"
+        iconStart="@tui.gallery-horizontal"
+        tuiAsideItem
+      >
+        {{ t('appGallery') }}
+      </a>
+      <hr />
+      @for (
+        item of aside()?.navigationItems();
+        track item.id();
+        let last = $last
+      ) {
+        <a
+          [routerLink]="item.link()"
+          [iconStart]="item.icon()"
+          tuiAsideItem
+        >
+          {{ item.label() }}
+        </a>
+
+        @if (last) {
+          <hr />
+        }
+      }
+      <button
+        disabled
+        iconStart="@tui.plus"
+        tuiAsideItem
+      >
+        {{ t('addApp') }}
+      </button>
+    </ng-container>
+    <footer *transloco="let t; prefix: 'button'">
+      <button
+        [iconStart]="expanded() ? '@tui.chevron-left' : '@tui.chevron-right'"
+        (click)="handleToggle()"
+        tuiAsideItem
+        type="button"
+      >
+        {{ t(expanded() ? 'collapse' : 'expand') }}
+      </button>
+    </footer>
+  </aside>
+  <main tuiNavigationMain>
+    <ng-content />
+  </main>
+</div>

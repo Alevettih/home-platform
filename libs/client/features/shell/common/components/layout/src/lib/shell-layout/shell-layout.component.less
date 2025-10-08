@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.divider {
+  block-size: 100%;
+  inline-size: 1px;
+  background: var(--tui-border-normal);
+  margin-inline: 8px;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+
+  [tuiNavigationMain] {
+    grid-template-rows: 1fr;
+  }
+}

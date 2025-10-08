@@ -1,0 +1,24 @@
+{
+  "name": "client-features-shell-common-components-language-switcher",
+  "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/features/shell/common/components/language-switcher/src",
+  "prefix": "hp",
+  "projectType": "library",
+  "tags": [
+    "app:shell",
+    "scope:client"
+  ],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/features/shell/common/components/language-switcher/jest.config.ts",
+        "tsConfig": "libs/client/features/shell/common/components/language-switcher/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

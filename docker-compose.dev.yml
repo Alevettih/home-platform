@@ -1,0 +1,102 @@
+name: home-platform-local
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    pull_policy: always
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/templates/:/etc/nginx/templates/
+    restart: always
+    depends_on:
+      client-shell:
+        condition: service_healthy
+      client-example:
+        condition: service_healthy
+    networks:
+      - client-network
+
+  client-shell:
+    container_name: client-shell
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '4200:4200'
+    environment:
+      - PORT=4200
+      - APP_NAME=client-shell
+    volumes:
+      - node_modules:/app/node_modules
+      # Bind mounts for better hot reload performance
+      - ./apps/client-shell:/app/apps/client-shell
+      - ./libs:/app/libs
+      - ./assets:/app/assets
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 1 bash -c '</dev/tcp/localhost/4200'"]
+      interval: 5s
+      timeout: 2s
+      retries: 40
+      start_period: 180s
+    networks:
+      - client-network
+
+  client-example:
+    container_name: client-example
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '4201:4201'
+    environment:
+      - PORT=4201
+      - APP_NAME=client-example
+    volumes:
+      - node_modules:/app/node_modules
+      # Bind mounts for better hot reload performance
+      - ./apps/client-example:/app/apps/client-example
+      - ./libs:/app/libs
+      - ./assets:/app/assets
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 1 bash -c '</dev/tcp/localhost/4201'"]
+      interval: 5s
+      timeout: 2s
+      retries: 40
+      start_period: 180s
+    networks:
+      - client-network
+
+  notify-ready:
+    image: alpine:latest
+    container_name: notify-ready
+    depends_on:
+      nginx:
+        condition: service_started
+    command: >
+      sh -c "
+        echo '';
+        echo '==========================================';
+        echo '  🚀 Home Platform is ready!';
+        echo '==========================================';
+        echo '';
+        echo '  ✅ Open platform: http://localhost';
+        echo '';
+        echo '  All services are up and running!';
+        echo '';
+        echo '==========================================';
+        echo '';
+        sleep infinity;
+      "
+    networks:
+      - client-network
+
+volumes:
+  node_modules:
+    driver: local
+
+networks:
+  client-network:
+    name: client-network
+    driver: bridge

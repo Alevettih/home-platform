@@ -1,0 +1,16 @@
+{
+  "appInfo": {
+    "title": "Home Platform",
+    "subtitle": "Choose application"
+  },
+  "button": {
+    "switchTheme": "Switch theme",
+    "switchLanguage": "Switch language",
+    "appGallery": "App Gallery",
+    "addApp": "Add application"
+  },
+  "language": {
+    "ru": "Russian",
+    "en": "English"
+  }
+}

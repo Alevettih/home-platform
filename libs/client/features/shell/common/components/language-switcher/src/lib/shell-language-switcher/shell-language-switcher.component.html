@@ -1,0 +1,45 @@
+<button
+  *transloco="let t; scope: 'shell'; prefix: 'shell.button'"
+  [tuiDropdown]="dataListContent"
+  appearance="flat-grayscale"
+  type="button"
+  size="s"
+  tuiDropdownOpen
+  tuiIconButton
+  iconStart="@tui.languages"
+>
+  {{ t('switchLanguage') }}
+
+  <ng-template #dataListContent>
+    <tui-data-list
+      [style.width.px]="130"
+      size="s"
+    >
+      <tui-opt-group [label]="t('switchLanguage')">
+        @for (lang of availableLangs; track lang.id) {
+          <button
+            *transloco="let t; scope: 'shell'; prefix: 'shell.language'"
+            (click)="setLang(lang)"
+            new
+            tuiOption
+            type="button"
+            tuiHintOverflow
+          >
+            <img
+              class="t-flag"
+              [src]="lang.countryCode | tuiFlag"
+              alt=""
+            />
+            {{ t(lang.id) }}
+            @if (language() === lang.id) {
+              <tui-icon
+                [style.font-size.px]="16"
+                icon="@tui.check"
+              />
+            }
+          </button>
+        }
+      </tui-opt-group>
+    </tui-data-list>
+  </ng-template>
+</button>

@@ -1,0 +1,46 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "strict": true,
+    "paths": {
+      "@hp/client/data/platform-data-bus": [
+        "libs/client/data/platform-data-bus/src/index.ts"
+      ],
+      "@hp/client/features/shell/common/components/app-info": [
+        "libs/client/features/shell/common/components/app-info/src/index.ts"
+      ],
+      "@hp/client/features/shell/common/components/language-switcher": [
+        "libs/client/features/shell/common/components/language-switcher/src/index.ts"
+      ],
+      "@hp/client/features/shell/common/components/layout": [
+        "libs/client/features/shell/common/components/layout/src/index.ts"
+      ],
+      "@hp/client/features/shell/common/components/theme-switcher": [
+        "libs/client/features/shell/common/components/theme-switcher/src/index.ts"
+      ],
+      "@hp/client/features/shell/containers/platform-root": [
+        "libs/client/features/shell/containers/platform-root/src/index.ts"
+      ],
+      "@hp/client/features/shell/routing": [
+        "libs/client/features/shell/routing/src/index.ts"
+      ],
+      "@hp/client/shared/core/configs/translations": [
+        "libs/client/shared/core/configs/translations/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

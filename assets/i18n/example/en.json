@@ -1,0 +1,8 @@
+{
+  "title": "Example works!",
+  "subtitle": "You can do something with it, or you can not do it. And the description text can be quite long.",
+  "appInfo": {
+    "title": "Example",
+    "subtitle": "An example of a microfrontend app"
+  }
+}

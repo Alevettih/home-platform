@@ -1,0 +1,24 @@
+{
+  "name": "client-features-shell-containers-platform-root",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/features/shell/containers/platform-root/src",
+  "prefix": "hp",
+  "projectType": "library",
+  "tags": [
+    "scope:client",
+    "app:shell"
+  ],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/features/shell/containers/platform-root/jest.config.ts",
+        "tsConfig": "libs/client/features/shell/containers/platform-root/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

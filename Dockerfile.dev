@@ -1,0 +1,27 @@
+# Используем официальный базовый образ Node.js версии 14 (или более поздней)
+FROM node:22.20.0-alpine
+
+# Устанавливаем bash для healthcheck
+RUN apk add --no-cache bash
+
+# По умолчанию порт, который слушает dev-сервер Angular, это 4200
+ARG PORT=4200
+ARG APP_NAME
+
+# Устанавливаем рабочую директорию внутри контейнера
+WORKDIR /app
+
+# Копируем package.json и package-lock.json (если они есть) в рабочую директорию
+COPY package*.json ./
+
+# Устанавливаем зависимости проекта
+RUN npm ci
+
+# Копируем остальную часть приложения в контейнер
+COPY . .
+
+EXPOSE $PORT
+
+# Запускаем Angular CLI в режиме разработчика
+#--disable-host-check=true полезно для обхода проверок хоста при проксировании через Nginx.
+CMD ["sh", "-c", "npx nx run ${APP_NAME}:serve:docker --port=${PORT}"]

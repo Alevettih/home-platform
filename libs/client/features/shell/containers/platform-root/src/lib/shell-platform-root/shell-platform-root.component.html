@@ -1,0 +1,25 @@
+<tui-root [attr.tuiTheme]="theme()">
+  <hp-shell-layout>
+    <ng-container hpShellLayoutHeader>
+      <ng-template hpShellLayoutHeaderGroup="left">
+        <hp-shell-app-info />
+      </ng-template>
+      <ng-template hpShellLayoutHeaderGroup="right">
+        <hp-shell-theme-switcher />
+        <hp-shell-language-switcher />
+      </ng-template>
+    </ng-container>
+    <ng-container hpShellLayoutAside>
+      @for (item of navigationItems; track item.label) {
+        <ng-template
+          [icon]="item.icon"
+          [label]="item.label"
+          [link]="item.link"
+          hpShellLayoutNavItem
+        />
+      }
+    </ng-container>
+
+    <router-outlet />
+  </hp-shell-layout>
+</tui-root>

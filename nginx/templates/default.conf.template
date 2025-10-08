@@ -1,0 +1,22 @@
+upstream host_shell {
+  server client-shell:4200;
+}
+
+upstream host_example {
+  server client-example:4201;
+}
+
+server {
+  listen 80;
+  server_name localhost;
+
+  location / {
+    proxy_pass http://host_shell;
+    include ./conf.d/proxy_headers.inc;
+  }
+
+  location /host-example {
+    proxy_pass http://host_example;
+    include ./conf.d/proxy_headers.inc;
+  }
+}

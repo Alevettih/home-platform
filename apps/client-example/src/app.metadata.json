@@ -1,0 +1,16 @@
+{
+  "id": "example",
+  "selector": "hp-example-root",
+  "route": "/example",
+  "icon": "octagon-alert",
+  "i18n": {
+    "ru": {
+      "name": "Пример",
+      "description": "Пример приложения-микрофронтенда"
+    },
+    "en": {
+      "name": "Example",
+      "description": "An example of a microfrontend app"
+    }
+  }
+}

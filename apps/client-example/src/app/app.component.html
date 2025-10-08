@@ -1,0 +1,18 @@
+<tui-block-status
+  class="card"
+  [card]="true"
+  *transloco="let t; scope: 'example'; prefix: 'example'"
+>
+  <tui-icon
+    [style.font-size.rem]="5"
+    tuiSlot="top"
+    tuiIcon
+    icon="@tui.octagon-alert"
+  />
+
+  <h4>{{ t('title') }}</h4>
+
+  <span class="text">
+    {{ t('subtitle') }}
+  </span>
+</tui-block-status>
