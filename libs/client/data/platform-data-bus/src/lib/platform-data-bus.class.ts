@@ -15,10 +15,11 @@ declare global {
 export class PlatformDataBus {
   private readonly destroyed$ = new Subject<void>();
 
-  public readonly appInfo = new PlatformDataField<PlatformAppInfo | null>(
-    null,
-    this.destroyed$,
-  );
+  public readonly appInfo =
+    new PlatformDataField<PlatformAppInfo | null>(
+      null,
+      this.destroyed$,
+    );
   public readonly language = new PlatformDataField<PlatformLanguage | null>(
     null,
     this.destroyed$,

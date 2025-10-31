@@ -1,7 +1,7 @@
 {
   "appInfo": {
     "title": "Home Platform",
-    "subtitle": "Choose application"
+    "subtitle": "A platform for microfrontends without a specific purpose"
   },
   "button": {
     "switchTheme": "Switch theme",
@@ -12,5 +12,41 @@
   "language": {
     "ru": "Russian",
     "en": "English"
+  },
+  "applications": {
+    "appInfo": {
+      "title": "Applications",
+      "subtitle": "Select an app to view"
+    },
+    "form": {
+      "button": {
+        "syncMetadata": "Sync metadata",
+        "getMetadata": "Request metadata"
+      },
+      "create": {
+        "title": "Adding an application",
+        "subtitle": "Add your application to the platform"
+      },
+      "edit": {
+        "title": "Edit application",
+        "subtitle": "Update your application information"
+      },
+      "metadata": "Metadata",
+      "publicFields": "Public fields",
+      "field": {
+        "id": "ID",
+        "name": "Name",
+        "description": "Description",
+        "selector": "Selector",
+        "hostUrl": "Host URL",
+        "route": "Platform Route",
+        "icon": "Icon",
+        "editMetadata": "Edit metadata"
+      },
+      "hint": {
+        "hostUrl": "Please enter the path to your application. For example: <code>/host-example</code>",
+        "publicFields": "Fields displayed in the interface."
+      }
+    }
   }
 }

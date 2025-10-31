@@ -1,0 +1,23 @@
+.toolbar {
+  &::ng-deep {
+    .t-nav-subheader {
+    justify-content: space-between;
+    }
+  }
+
+  .group {
+    display: flex;
+    align-items: center;
+    gap: inherit;
+  }
+
+  .divider {
+    block-size: 30px;
+    inline-size: 1px;
+    background: var(--tui-border-normal);
+  }
+
+  button:last-of-type {
+    margin-inline-start: auto;
+  }
+}

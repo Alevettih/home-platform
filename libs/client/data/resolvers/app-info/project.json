@@ -1,0 +1,21 @@
+{
+  "name": "client-data-resolvers-app-info",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/data/resolvers/app-info/src",
+  "prefix": "hp",
+  "projectType": "library",
+  "tags": ["scope:client", "type:data"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/data/resolvers/app-info/jest.config.ts",
+        "tsConfig": "libs/client/data/resolvers/app-info/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

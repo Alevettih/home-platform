@@ -4,7 +4,10 @@
   "sourceRoot": "libs/client/data/platform-data-bus/src",
   "prefix": "hp",
   "projectType": "library",
-  "tags": ["scope:client", "type:data"],
+  "tags": [
+    "scope:client",
+    "type:data"
+  ],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

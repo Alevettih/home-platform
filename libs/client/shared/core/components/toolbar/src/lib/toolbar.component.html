@@ -1,0 +1,47 @@
+<header
+  class="toolbar"
+  compact
+  tuiSubheader
+>
+  <div class="group">
+    <hp-breadcrumbs />
+    @for (
+      group of leftGroups();
+      track $index;
+      let first = $first;
+      let last = $last
+    ) {
+      @if (first) {
+        <div class="divider"></div>
+      }
+
+      <ng-template *ngTemplateOutlet="group" />
+
+      @if (!last) {
+        <div class="divider"></div>
+      }
+    }
+  </div>
+  @if (middleGroups().length) {
+    <div class="group">
+      @for (group of middleGroups(); track $index; let last = $last) {
+        <ng-template *ngTemplateOutlet="group" />
+
+        @if (!last) {
+          <div class="divider"></div>
+        }
+      }
+    </div>
+  }
+  @if (rightGroups().length) {
+    <div class="group">
+      @for (group of rightGroups(); track $index; let last = $last) {
+        <ng-template *ngTemplateOutlet="group" />
+
+        @if (!last) {
+          <div class="divider"></div>
+        }
+      }
+    </div>
+  }
+</header>

@@ -1,0 +1,16 @@
+<hp-toolbar *transloco="let t">
+  <ng-template hpToolbarRight>
+    <button
+      [disabled]="!isSaveEnabled"
+      (click)="onSave()"
+      right
+      tuiButton
+      size="s"
+      type="button"
+    >
+      {{ t('button.save') }}
+    </button>
+  </ng-template>
+</hp-toolbar>
+
+<hp-shell-applications-form [formControl]="modelControl" />

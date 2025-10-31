@@ -1,0 +1,83 @@
+<ng-container
+  *transloco="let t; scope: 'shell'; prefix: `shell.applications.form`"
+>
+  <h4
+    class="title-toolbar"
+    tuiTitle
+  >
+    {{ t('metadata') }}
+
+    <ng-content />
+  </h4>
+
+  <section
+    [formGroup]="form"
+    tuiForm="m"
+  >
+    <tui-textfield>
+      <label
+        tuiLabel
+        for="id"
+      >
+        {{ t('field.id') }}
+      </label>
+      <input
+        id="id"
+        [readOnly]="!isEditable()"
+        tuiTextfield
+        formControlName="id"
+        type="text"
+      />
+    </tui-textfield>
+    <tui-error
+      [error]="[] | tuiFieldError | async"
+      formControlName="id"
+    />
+    <tui-textfield>
+      <label
+        tuiLabel
+        for="selector"
+      >
+        {{ t('field.selector') }}
+      </label>
+      <input
+        id="selector"
+        [readOnly]="!isEditable()"
+        tuiTextfield
+        formControlName="selector"
+        type="text"
+      />
+    </tui-textfield>
+    <tui-error
+      [error]="[] | tuiFieldError | async"
+      formControlName="selector"
+    />
+    <tui-textfield>
+      <label
+        tuiLabel
+        for="route"
+      >
+        {{ t('field.route') }}
+      </label>
+      <input
+        id="route"
+        [readOnly]="!isEditable()"
+        tuiTextfield
+        formControlName="route"
+        type="text"
+      />
+    </tui-textfield>
+    <tui-error
+      [error]="[] | tuiFieldError | async"
+      formControlName="route"
+    />
+    <hp-shell-application-icon-control
+      [readOnly]="!isEditable()"
+      formControlName="icon"
+    />
+    <tui-error
+      [error]="[] | tuiFieldError | async"
+      formControlName="icon"
+    />
+  </section>
+</ng-container>

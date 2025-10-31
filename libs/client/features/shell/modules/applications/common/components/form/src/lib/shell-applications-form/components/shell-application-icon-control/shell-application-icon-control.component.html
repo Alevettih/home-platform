@@ -1,0 +1,57 @@
+<tui-textfield
+  *transloco="let t; scope: 'shell'; prefix: `shell.applications.form`"
+  tuiChevron
+>
+  <label
+    tuiLabel
+    for="icon"
+  >
+    {{ t('field.icon') }}
+  </label>
+  <input
+    id="icon"
+    [readOnly]="readOnly()"
+    [invalid]="shouldHighlightInvalid"
+    [ngModel]="value()"
+    (ngModelChange)="onModelChange($event)"
+    (blur)="onTouched()"
+    tuiComboBox
+    type="text"
+  />
+
+  <ng-container *tuiTextfieldDropdown>
+    @let items = icons | tuiFilterByInput;
+    <cdk-virtual-scroll-viewport
+      class="scroll"
+      [itemSize]="40"
+      [maxBufferPx]="40 * 10"
+      [minBufferPx]="40 * 5"
+      [style.height.px]="(items?.length || 1) * 40 + 8"
+      tuiScrollable
+    >
+      <tui-data-list new>
+        <button
+          *cdkVirtualFor="let icon of items"
+          [value]="icon"
+          new
+          tuiOption
+          type="button"
+        >
+          <tui-icon [icon]="`@tui.${icon}`" />
+          {{ icon }}
+        </button>
+      </tui-data-list>
+    </cdk-virtual-scroll-viewport>
+  </ng-container>
+</tui-textfield>
+
+@let iconName = value();
+<button
+  [iconStart]="iconName ? `@tui.${iconName}` : null"
+  appearance="outline-grayscale"
+  tuiIconButton
+  type="button"
+  inert
+>
+  {{ iconName }}
+</button>

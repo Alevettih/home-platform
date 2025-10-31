@@ -6,7 +6,15 @@ import { AppComponent } from './app.component';
 describe('AppComponent', (): void => {
   beforeEach(async (): Promise<void> => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, TranslocoTestingModule.forRoot({})],
+      imports: [
+        AppComponent,
+        TranslocoTestingModule.forRoot({
+          langs: {
+            'shell/en': {},
+            'shell/ru': {},
+          },
+        }),
+      ],
       providers: [providePlatformDataBus()],
     }).compileComponents();
   });

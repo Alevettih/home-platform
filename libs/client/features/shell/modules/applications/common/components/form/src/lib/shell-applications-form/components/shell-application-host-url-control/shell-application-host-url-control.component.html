@@ -1,0 +1,39 @@
+<tui-loader [showLoader]="isLoading()">
+  <div
+    *transloco="let t; scope: 'shell'; prefix: `shell.applications.form`"
+    tuiGroup
+  >
+    <tui-textfield>
+      <label
+        tuiLabel
+        for="hostUrl"
+      >
+        {{ t('field.hostUrl') }}
+      </label>
+      <input
+        id="hostUrl"
+        [invalid]="shouldHighlightInvalid"
+        [ngModel]="value()"
+        (ngModelChange)="onModelChange($event)"
+        (blur)="onTouched()"
+        (keyup.enter)="control?.invalid ? null : updateMetadata()"
+        tuiTextfield
+        type="text"
+      />
+      <tui-icon [tuiTooltip]="t('hint.hostUrl')" />
+    </tui-textfield>
+
+    @let textContent = t('button.getMetadata');
+    <button
+      [disabled]="control?.invalid"
+      [tuiHint]="textContent"
+      [appearance]="metadataStatus()"
+      [iconStart]="metadataSearchIcon()"
+      (click)="updateMetadata()"
+      tuiIconButton
+      type="button"
+    >
+      {{ textContent }}
+    </button>
+  </div>
+</tui-loader>
