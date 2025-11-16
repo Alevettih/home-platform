@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../../../../../../../dist/out-tsc",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "types": []
+  },
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/test-setup.ts",
+    "jest.config.ts",
+    "src/**/*.test.ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "../../utils/src/lib/helpers/generate-application-18n-model.helper.ts",
+    "../../../../../../../shared/core/components/icon-selection-control/src/lib/shell-application-metadata.constants.ts"
+  ]
+}

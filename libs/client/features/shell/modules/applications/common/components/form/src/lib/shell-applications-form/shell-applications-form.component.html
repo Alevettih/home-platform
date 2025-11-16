@@ -1,0 +1,46 @@
+<form
+  *transloco="let t; scope: 'shell'; prefix: `shell.applications.form`"
+  [formGroup]="form"
+  [tuiCardCollapsed]="!expanded()"
+  tuiCardLarge="compact"
+  tuiAppearance="floating"
+>
+  <div
+    tuiCardRow
+    tuiForm="m"
+  >
+    <hp-shell-application-host-url-control
+      [readOnly]="!isEditable()"
+      (metadataChange)="onMetadataChange($event)"
+      formControlName="hostUrl"
+    />
+    <tui-error
+      [error]="[] | tuiFieldError | async"
+      formControlName="hostUrl"
+    />
+  </div>
+
+  <tui-expand [expanded]="expanded()">
+    <div tuiForm="m">
+      <hp-shell-applications-metadata-group
+        [isEditable]="isEditable()"
+        formControlName="meta"
+      >
+        <label tuiLabel>
+          {{ t('field.editMetadata') }}
+          <input
+            [showIcons]="true"
+            [formControl]="isEditableControl"
+            tuiSwitch
+            type="checkbox"
+          />
+        </label>
+      </hp-shell-applications-metadata-group>
+
+      <hp-shell-applications-i18n-group
+        [isEditable]="isEditable()"
+        formControlName="i18n"
+      />
+    </div>
+  </tui-expand>
+</form>

@@ -1,0 +1,36 @@
+@if (breadcrumbs().length) {
+  <tui-breadcrumbs>
+    @for (item of breadcrumbs(); track item.key + $index; let last = $last) {
+      <ng-container
+        *transloco="
+          let t;
+          scope: item.params?.['scope'];
+          prefix: item.params?.['scope']
+        "
+      >
+        @if (item.link) {
+          <a
+            *tuiItem
+            [routerLink]="item.link"
+            [class.active]="last"
+            [attr.inert]="last || undefined"
+            (click)="onBreadcrumbClick($event, item)"
+            tuiLink
+          >
+            {{ t(item.key, item.params) }}
+          </a>
+        } @else {
+          <button
+            *tuiItem
+            [class.active]="last"
+            [attr.inert]="last || undefined"
+            (click)="onBreadcrumbClick($event, item)"
+            tuiLink
+          >
+            {{ t(item.key, item.params) }}
+          </button>
+        }
+      </ng-container>
+    }
+  </tui-breadcrumbs>
+}

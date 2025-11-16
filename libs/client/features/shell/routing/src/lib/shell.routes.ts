@@ -1,15 +1,22 @@
 import { loadRemoteModule } from '@angular-architects/native-federation';
-import { Route, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
+import { appInfoResolver } from '@hp/client/data/resolvers/app-info';
 import { ShellPlatformRootContainerComponent } from '@hp/client/features/shell/containers/platform-root';
 
-export const appRoutes: Route[] = [
+export const appRoutes: Routes = [
   {
     path: '',
     component: ShellPlatformRootContainerComponent,
     children: [
       {
         path: 'apps',
-        children: [],
+        resolve: {
+          appInfo: appInfoResolver(null),
+        },
+        loadChildren: (): Promise<Routes> =>
+          import('@hp/client/features/shell/modules/applications/routing').then(
+            (m): Routes => m.appRoutes,
+          ),
       },
       {
         path: 'example',

@@ -9,6 +9,7 @@ import { provideTranslocoLocale } from '@jsverse/transloco-locale';
 import { availableLangs } from './translations.constants';
 import { setLanguage } from './translations.initializer';
 import { TranslationsHttpLoader } from './translations.loader';
+import { provideValidationMessageTranslations } from './validation-messages/validation-messages-translations.provider';
 
 export function provideTranslations(): EnvironmentProviders {
   return makeEnvironmentProviders([
@@ -29,5 +30,6 @@ export function provideTranslations(): EnvironmentProviders {
       },
     }),
     provideAppInitializer(setLanguage),
+    provideValidationMessageTranslations(),
   ]);
 }

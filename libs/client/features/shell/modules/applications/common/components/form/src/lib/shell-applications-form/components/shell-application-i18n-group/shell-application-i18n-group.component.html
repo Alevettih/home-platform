@@ -1,0 +1,34 @@
+<ng-container [formGroup]="form">
+  <h4 tuiTitle>
+    <span *transloco="let t; scope: 'shell'; prefix: `shell.applications.form`">
+      {{ t('publicFields') }}
+      <tui-icon [tuiTooltip]="t('hint.publicFields')" />
+    </span>
+
+    <tui-segmented
+      *transloco="let t; scope: 'shell'; prefix: `shell`"
+      [activeItemIndex]="currentLangIndex()"
+      (activeItemIndexChange)="currentLangIndex.set($event)"
+    >
+      @for (lang of langs; track lang.id) {
+        <button type="button">
+          <img
+            class="flag"
+            [src]="lang.countryCode | tuiFlag"
+            alt=""
+          />
+          {{ t(`language.${lang.id}`) }}
+        </button>
+      }
+    </tui-segmented>
+  </h4>
+
+  @for (lang of langs; track lang.id) {
+    @if (currentLang().id === lang.id) {
+      <hp-shell-applications-i18n-fields-group
+        [formControlName]="lang.id"
+        [isEditable]="isEditable()"
+      />
+    }
+  }
+</ng-container>

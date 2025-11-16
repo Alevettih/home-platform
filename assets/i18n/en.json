@@ -1,6 +1,27 @@
 {
   "button": {
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "save": "Save",
     "expand": "Expand",
     "collapse": "Collapse"
+  },
+  "error": {
+    "required": "This field is required.",
+    "maxLength": "The field must contain no more than {{ requiredLength }} characters.",
+    "minLength": "The field must contain at least than {{ requiredLength }} characters.",
+    "path": "The field must contain only Latin letters, numbers and symbols \"/\", \"-\", \"_\".",
+    "selector": "The field must contain only Latin letters, numbers and symbols \"-\", \"_\".",
+    "notStartsWith": "The value must not start with \"{{ value }}\".",
+    "notEndsWith": "The value must not end with \"{{ value }}\".",
+    "nonDuplicatedSymbol": "The \"{{ symbol }}\" character must not appear consecutively.",
+    "invalidSymbols": "The value must not contain the following characters {{ invalidSymbols }}."
+  },
+  "dialog": {
+    "leaveForm": {
+      "title": "Are you sure you want to leave?",
+      "subtitle": "All unsaved changes will be lost!"
+    }
   }
 }

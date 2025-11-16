@@ -1,5 +1,5 @@
 # Используем официальный базовый образ Node.js версии 14 (или более поздней)
-FROM node:22.20.0-alpine
+FROM node:24-alpine
 
 # Устанавливаем bash для healthcheck
 RUN apk add --no-cache bash

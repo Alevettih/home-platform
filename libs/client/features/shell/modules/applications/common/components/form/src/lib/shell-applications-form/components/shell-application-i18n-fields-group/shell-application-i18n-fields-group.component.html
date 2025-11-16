@@ -1,0 +1,44 @@
+<section
+  class="form-group"
+  *transloco="let t; scope: 'shell'; prefix: `shell.applications.form.field`"
+  [formGroup]="form"
+  tuiForm="m"
+>
+  <tui-textfield>
+    <label
+      for="name"
+      tuiLabel
+    >
+      {{ t('name') }}
+    </label>
+    <input
+      id="name"
+      [readOnly]="!isEditable()"
+      formControlName="name"
+      tuiTextfield
+      type="text"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="[] | tuiFieldError | async"
+    formControlName="name"
+  />
+  <tui-textfield>
+    <label
+      for="description"
+      tuiLabel
+    >
+      {{ t('description') }}
+    </label>
+    <textarea
+      id="description"
+      [readOnly]="!isEditable()"
+      formControlName="description"
+      tuiTextarea
+    ></textarea>
+  </tui-textfield>
+  <tui-error
+    [error]="[] | tuiFieldError | async"
+    formControlName="description"
+  />
+</section>

@@ -10,14 +10,20 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2024", "dom"],
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "strict": true,
     "paths": {
+      "@hp/client/data/models": ["libs/client/data/models/src/index.ts"],
       "@hp/client/data/platform-data-bus": [
         "libs/client/data/platform-data-bus/src/index.ts"
+      ],
+      "@hp/client/data/resolvers/app-info": [
+        "libs/client/data/resolvers/app-info/src/index.ts"
       ],
       "@hp/client/features/shell/common/components/app-info": [
         "libs/client/features/shell/common/components/app-info/src/index.ts"
@@ -34,12 +40,37 @@
       "@hp/client/features/shell/containers/platform-root": [
         "libs/client/features/shell/containers/platform-root/src/index.ts"
       ],
+      "@hp/client/features/shell/modules/applications/common/components/form": [
+        "libs/client/features/shell/modules/applications/common/components/form/src/index.ts"
+      ],
+      "@hp/client/features/shell/modules/applications/common/utils": [
+        "libs/client/features/shell/modules/applications/common/utils/src/index.ts"
+      ],
+      "@hp/client/features/shell/modules/applications/containers/form": [
+        "libs/client/features/shell/modules/applications/containers/form/src/index.ts"
+      ],
+      "@hp/client/features/shell/modules/applications/containers/list": [
+        "libs/client/features/shell/modules/applications/containers/list/src/index.ts"
+      ],
+      "@hp/client/features/shell/modules/applications/routing": [
+        "libs/client/features/shell/modules/applications/routing/src/index.ts"
+      ],
       "@hp/client/features/shell/routing": [
         "libs/client/features/shell/routing/src/index.ts"
       ],
+      "@hp/client/shared/core/components/breadcrumbs": [
+        "libs/client/shared/core/components/breadcrumbs/src/index.ts"
+      ],
+      "@hp/client/shared/core/components/toolbar": [
+        "libs/client/shared/core/components/toolbar/src/index.ts"
+      ],
       "@hp/client/shared/core/configs/translations": [
         "libs/client/shared/core/configs/translations/src/index.ts"
-      ]
+      ],
+      "@hp/client/shared/core/guards/can-leave-form": [
+        "libs/client/shared/core/guards/can-leave-form/src/index.ts"
+      ],
+      "@hp/client/utils": ["libs/client/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
